@@ -6,6 +6,7 @@
 int arr[15] = {8, 2, 3, 6, 125125, 123, 12541, 12, 1, 5, 21, 5, 1, 2, 4};
 int sorted_arr[15] = {1, 1, 2, 2, 3, 4, 5, 5, 6, 8, 12, 21, 123, 12541, 125125};
 int arr2[15] = {8, 2, 3, 6, 125125, 123, 12541, 12, 1, 5, 21, 5, 1, 2, 4};
+int arr3[15] = {8, 2, 3, 6, 125125, 123, 12541, 12, 1, 5, 21, 5, 1, 2, 4};
 
 void setup(void)
 {
@@ -39,6 +40,17 @@ START_TEST(merge_sort)
 	}
 END_TEST
 
+START_TEST(bubble_sort)
+	{
+		lrsortal_bubble_sort(arr3, 15);
+		for (int i = 0; i < 15; i++) {
+			if (arr3[i] != sorted_arr[i]) {
+				ck_abort_msg("Error %i should be %i at index %i", arr[i], sorted_arr[i], i);
+			}
+		}
+	}
+END_TEST
+
 Suite *unit_tests(void)
 {
 	Suite *s = suite_create("Sample Unit Tests");
@@ -48,6 +60,7 @@ Suite *unit_tests(void)
 	tcase_add_checked_fixture(tc_core, setup, teardown);
 	tcase_add_test(tc_core, insertion_sort);
 	tcase_add_test(tc_core, merge_sort);
+	tcase_add_test(tc_core, bubble_sort);
 	suite_add_tcase(s, tc_core);
 
 	return s;

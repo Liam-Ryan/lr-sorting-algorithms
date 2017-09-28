@@ -56,9 +56,23 @@ void merge(int *array, int strt, int mid, int end)
 void lrsortal_merge_sort(int *array, int strt, int end)
 {
 	if (end > strt) {
-		int mid = (int)floor((end - strt) / 2) + strt;
+		int mid = (int) floor((end - strt) / 2) + strt;
 		lrsortal_merge_sort(array, strt, mid);
 		lrsortal_merge_sort(array, mid + 1, end);
 		merge(array, strt, mid, end);
 	}
+}
+
+void lrsortal_bubble_sort(int *array, int size)
+{
+	for (int i = 0; i < size - 1; i++) {
+		for (int j = size - 1; j >= i + 1; j--) {
+			if (array[j] <= array[j - 1]) {
+				int tmp = array[j];
+				array[j] = array[j - 1];
+				array[j - 1] = tmp;
+			}
+		}
+	}
+
 }
